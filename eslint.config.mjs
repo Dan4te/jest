@@ -15,14 +15,17 @@ const compat = new FlatCompat({
 export default [...compat.extends("airbnb-base"), {
     languageOptions: {
         globals: {
-            ...globals.brovser,
+            ...globals.browser,
+            ...globals.jest,
+            Atomics: "readonly",
+            SharedArrayBuffer: "readonly",
         },
 
         ecmaVersion: 2018,
-        sourceType: "script",
+        sourceType: "module",
+    },
 
-        parserOptions: {
-            sourseType: "module",
-        },
+    rules: {
+        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
     },
 }];
